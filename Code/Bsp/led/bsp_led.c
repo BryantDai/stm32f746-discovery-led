@@ -1,6 +1,8 @@
 /* Includes ---------------------------------------------------------------------------------------------------*/
 #include "bsp_led.h"
 
+
+
 /* Private typedef --------------------------------------------------------------------------------------------*/
 /* Private define ---------------------------------------------------------------------------------------------*/
 /* Private macro ----------------------------------------------------------------------------------------------*/
@@ -93,9 +95,10 @@ void bsp_GPIOxClockEnable(GPIO_TypeDef* gpioPort)
 void bsp_LedOff(Enum_LedName ledName)
 {
     LED[ledName].LED_PORT->BSRR = (uint32_t)LED[ledName].LED_PIN << 16;
+    /* HAL_GPIO_WritePin(LED[ledName].LED_PORT,LED[ledName].LED_PIN,GPIO_PIN_RESET);                           */
 }
 
-/**************************************************************************************************************
+/***************************************************************************************************************
  * Function Name   : bsp_LedOn
  * Description     : Turn on a specific led
  * Input Variable  : ledName
@@ -107,9 +110,11 @@ void bsp_LedOff(Enum_LedName ledName)
 void bsp_LedOn(Enum_LedName ledName)
 {
     LED[ledName].LED_PORT->BSRR = (uint32_t)LED[ledName].LED_PIN ;
+
+    /* HAL_GPIO_WritePin(LED[ledName].LED_PORT,LED[ledName].LED_PIN,GPIO_PIN_SET);                             */
 }
 
-/**************************************************************************************************************
+/***************************************************************************************************************
  * Function Name   : bsp_LedToggle
  * Description     : Turn on a specific led
  * Input Variable  : ledName
@@ -121,6 +126,9 @@ void bsp_LedOn(Enum_LedName ledName)
 void bsp_LedToggle(Enum_LedName ledName)
 {
     LED[ledName].LED_PORT->ODR ^= LED[ledName].LED_PIN;
+    /* HAL_GPIO_TogglePin(LED[ledName].LED_PORT,LED[ledName].LED_PIN);                                         */
 }
 
 /*************************************************END OF FILE***************************************************/
+
+

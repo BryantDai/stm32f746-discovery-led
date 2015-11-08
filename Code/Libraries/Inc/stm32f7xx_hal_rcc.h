@@ -1107,7 +1107,8 @@ typedef struct
   *            @arg RCC_FLAG_LPWRRST: Low Power reset.
   * @retval The new state of __FLAG__ (TRUE or FALSE).
   */
-#define RCC_FLAG_MASK  ((uint8_t)0x1F)
+#define RCC_FLAG_MASK  ((uint8_t)0x1F)  
+/* This macro basic on the value of '__FLAG__' to figure out the '__FLAG__' in which register and which bit (amazing)*/
 #define __HAL_RCC_GET_FLAG(__FLAG__) (((((((__FLAG__) >> 5) == 1)? RCC->CR :((((__FLAG__) >> 5) == 2) ? RCC->BDCR :((((__FLAG__) >> 5) == 3)? RCC->CSR :RCC->CIR))) & ((uint32_t)1 << ((__FLAG__) & RCC_FLAG_MASK)))!= 0)? 1 : 0)
 
 /**

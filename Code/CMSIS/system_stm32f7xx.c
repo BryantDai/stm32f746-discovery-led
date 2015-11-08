@@ -163,7 +163,7 @@ void SystemInit(void)
 {
   /* FPU settings ------------------------------------------------------------*/
   #if (__FPU_PRESENT == 1) && (__FPU_USED == 1)
-    SCB->CPACR |= ((3UL << 10*2)|(3UL << 11*2));  /* set CP10 and CP11 Full Access */
+    SCB->CPACR |= ((3UL << 10*2)|(3UL << 11*2));  /* set CP10 and CP11 Full Access (Float point coprocessor)*/
   #endif
   /* Reset the RCC clock configuration to the default reset state ------------*/
   /* Set HSION bit */
@@ -173,13 +173,13 @@ void SystemInit(void)
   RCC->CFGR = 0x00000000;
 
   /* Reset HSEON, CSSON and PLLON bits */
-  RCC->CR &= (uint32_t)0xFEF6FFFF;
+  RCC->CR &= (uint32_t)0xFEF6FFFF;    /* (HSEON)HSE clock disable, (CSSON) clock security system disable, (PLLON)Main PLL disable */
 
   /* Reset PLLCFGR register */
-  RCC->PLLCFGR = 0x24003010;
+  RCC->PLLCFGR = 0x24003010;          /* Set this register context to default value(see reference manual)             */
 
   /* Reset HSEBYP bit */
-  RCC->CR &= (uint32_t)0xFFFBFFFF;
+  RCC->CR &= (uint32_t)0xFFFBFFFF;    /* HSE oscillator clock no bypass */
 
   /* Disable all interrupts */
   RCC->CIR = 0x00000000;

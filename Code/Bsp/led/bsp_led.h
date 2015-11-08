@@ -2,8 +2,16 @@
 #ifndef __BSP_LED_H
 #define __BSP_LED_H
 
+
+
+
+#ifdef __cplusplus
+ extern "C" {
+#endif
+
+
 /* Includes ---------------------------------------------------------------------------------------------------*/
-#include "stm32f746xx.h"
+#include "stm32f7xx_hal.h"
 
 
 /* Exported constants -----------------------------------------------------------------------------------------*/
@@ -39,6 +47,10 @@ extern void bsp_LedOff(Enum_LedName ledName);
 extern void bsp_LedToggle(Enum_LedName ledName);
 extern void bsp_GPIOxClockEnable(GPIO_TypeDef* gpioPort);
 
+
+#ifdef __cplusplus
+}
+#endif    /* __cplusplus                                                                                       */
 
 #endif    /* __BSP_LED_H                                                                                       */
 /*************************************************END OF FILE***************************************************/
