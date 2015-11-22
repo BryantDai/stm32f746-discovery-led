@@ -9,12 +9,14 @@
 
 /* Includes ---------------------------------------------------------------------------------------------------*/
 #include "bsp_led.h"
+#include "bsp_button.h"
 #include "bsp_systemconfig.h"
+
 /* Private typedef --------------------------------------------------------------------------------------------*/
 /* Private define ---------------------------------------------------------------------------------------------*/
 /* Private macro ----------------------------------------------------------------------------------------------*/
 /* Private variables ------------------------------------------------------------------------------------------*/
-  
+__IO uint8_t g_10msFlag = 0u;
 /* Private function prototypes --------------------------------------------------------------------------------*/
 /* Private functions ------------------------------------------------------------------------------------------*/
 
@@ -34,6 +36,9 @@
 
 int main(void)
 {
+  uint8_t buttonEvent = USER_BUTTON_NONE;
+  uint8_t i = 0u;
+  
   /* Enable the CPU Cache                                                                                      */
   bsp_CpuCacheEnable();
 
@@ -53,15 +58,47 @@ int main(void)
   /* Enable the PWR Clock                                                                                      */
   __HAL_RCC_PWR_CLK_ENABLE();
   
-  /* Enable HSE oscillator and configure the PLL to reach the max system frequency (216 MHz) when using HSE oscillator as PLL clock source. */
+  /* Enable HSE oscillator and configure the PLL to reach the max system frequency 
+     (216 MHz) when using HSE oscillator as PLL clock source. 
+   */
   bsp_SystemClockConfig();
 
   bsp_LedInit();
   
+  bsp_ButtonInit();
+  
   while(1)
   {
-    bsp_LedToggle(LED_GREEN);
-    HAL_Delay(100);
+    if (g_10msFlag == 1u)
+    {
+      g_10msFlag = 0u;
+
+      buttonEvent = bsp_ButtonScan();
+      if (buttonEvent == USER_BUTTON_DOWN)
+      {
+        for (i = 0u;i < 8u;i++)
+        {
+          bsp_LedToggle(LED_GREEN);
+          HAL_Delay(100u);
+        }
+      }
+      else if (buttonEvent == USER_BUTTON_DOUBLE)
+      {
+        for (i = 0u;i < 8u;i++)
+        {
+          bsp_LedToggle(LED_GREEN);
+          HAL_Delay(500u);
+        }
+      }
+      else if (buttonEvent == USER_BUTTON_LONG)
+      {
+        for (i = 0u;i < 8u;i++)
+        {
+          bsp_LedToggle(LED_GREEN);
+          HAL_Delay(1000u);
+        }
+      }
+    }
   }
 }
 

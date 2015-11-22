@@ -23,4 +23,5 @@
 ..\output\main.o: ..\Libraries\Inc\stm32f7xx_hal_flash_ex.h
 ..\output\main.o: ..\Libraries\Inc\stm32f7xx_hal_pwr.h
 ..\output\main.o: ..\Libraries\Inc\stm32f7xx_hal_pwr_ex.h
+..\output\main.o: ..\Bsp\button\bsp_button.h
 ..\output\main.o: ..\Bsp\systemconfig\bsp_systemconfig.h

@@ -8,7 +8,7 @@
 /* Private macro ----------------------------------------------------------------------------------------------*/
 /* Private variables ------------------------------------------------------------------------------------------*/
 Struct_LedInit LED[] = {
-    {LED_GREEN,GPIOI,GPIO_PIN_1,LED_OFF}              /* PI1 = Green LED in stm32f7 Discovery-Board            */
+    {LED_GREEN,GREEN_LED_PORT,GREEN_LED_PIN,LED_OFF}  /* PI1 = Green LED in stm32f7 Discovery-Board            */
 };
 
 static int g_ledNumber = sizeof(LED)/sizeof(LED[0]);  /* The number of LEDs need to config                     */
@@ -34,7 +34,7 @@ void bsp_LedInit(void)
 
     Enum_LedName ledName;
 
-    for(ledName = 0;ledName < g_ledNumber;ledName++)
+    for(ledName = LED_GREEN;ledName < g_ledNumber;ledName++)
     {
         bsp_GPIOxClockEnable(LED[ledName].LED_PORT); /* Enable GPIO Port clock                                 */
 

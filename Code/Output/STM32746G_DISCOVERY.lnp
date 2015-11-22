@@ -9,6 +9,7 @@
 "..\output\stm32f7xx_hal_rcc_ex.o"
 "..\output\bsp_led.o"
 "..\output\bsp_systemconfig.o"
+"..\output\bsp_button.o"
 "..\output\main.o"
 "..\output\stm32f7xx_it.o"
 --library_type=microlib --strict --scatter "..\Output\STM32746G_DISCOVERY.sct"

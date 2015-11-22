@@ -369,7 +369,7 @@
               <MiscControls>--C99</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F746xx</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CMSIS;..\Libraries\Inc;..\Libraries\Src;..\User;..\Bsp\led;..\Bsp\systemconfig</IncludePath>
+              <IncludePath>..\CMSIS;..\Libraries\Inc;..\Libraries\Src;..\User;..\Bsp\led;..\Bsp\systemconfig;..\Bsp\button</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -481,6 +481,11 @@
               <FileName>bsp_systemconfig.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Bsp\systemconfig\bsp_systemconfig.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Bsp\button\bsp_button.c</FilePath>
             </File>
           </Files>
         </Group>
